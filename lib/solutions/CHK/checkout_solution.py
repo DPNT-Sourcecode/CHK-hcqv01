@@ -36,12 +36,16 @@ def checkout(skus):
     if len(parsed_skus) == 0:
         return -1
 
+    if all(parsed_sku in prices.keys() for parsed_sku in parsed_skus):
+        return -1
+
     frequency_dict = Counter(parsed_skus)
     total_price = 0
     for key, value in frequency_dict.items():
         total_price += calculate_cost_of_sku(key, value)
 
     return total_price
+
 
 
 
