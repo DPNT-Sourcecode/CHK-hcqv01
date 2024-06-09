@@ -1,3 +1,4 @@
+import array
 from collections import Counter
 
 
@@ -7,6 +8,7 @@ prices = {
     "B": 30,
     "C": 20,
     "D": 15,
+    "E": 40,
 }
 
 class InvalidCheckoutError(Exception):
@@ -33,6 +35,23 @@ def calculate_cost_of_sku(sku, amount):
     """
     return prices[sku] * amount - calculate_multi_reduction(sku, amount)
 
+def calculate_free_discount_deductions(skus: array) -> array:
+    """
+    Calculates the free discount for skus
+    """
+    amount_of_e_sku_discounts = (skus["E"] or 0) // 2
+
+    if "B" in skus.keys():
+        potential_new_b_balance = skus["B"] - amount_of_e_sku_discounts
+        new_b_balance = potential_new_b_balance if potential_new_b_balance >= 0 else 0
+        skus.update({"B": new_b_balance})
+
+    print(skus)
+
+    return skus
+
+
+
 def parse_skus(raw_string):
     """
         Parses the SKU string to extract the individual SKUs
@@ -54,6 +73,7 @@ def process_checkout(skus):
 
     # calculate cost
     frequency_dict = Counter(parsed_skus)
+    frequency_dict = calculate_free_discount_deductions(frequency_dict)
     total_price = 0
     for key, value in frequency_dict.items():
         total_price += calculate_cost_of_sku(key, value)
@@ -68,6 +88,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
