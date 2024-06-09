@@ -73,11 +73,11 @@ prices = {
       "base_cost": 60,
     },
     "K": {
-      "base_cost": 80,
+      "base_cost": 70,
       "volume_discount": [
           {
               "amount": 2,
-              "discount": 10,
+              "discount": 20,
           }
       ]
     },
@@ -127,7 +127,7 @@ prices = {
       ]
     },
     "S": {
-      "base_cost": 30,
+      "base_cost": 20,
     },
     "T": {
       "base_cost": 20,
@@ -161,10 +161,10 @@ prices = {
       "base_cost": 17,
     },
     "Y": {
-      "base_cost": 10,
+      "base_cost": 20,
     },
     "Z": {
-      "base_cost": 50,
+      "base_cost": 21,
     },
 }
 
@@ -295,6 +295,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
