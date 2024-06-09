@@ -5,8 +5,8 @@ class TestCheckout():
 
     # round 5
     def test_range_discount(self):
-        # assert checkout_solution.checkout("STX") == 45
-        # assert checkout_solution.checkout("STXX") == 62
+        assert checkout_solution.checkout("STX") == 45
+        assert checkout_solution.checkout("STXX") == 62
 
         assert checkout_solution.checkout("SSSZ") == 65
         assert checkout_solution.checkout("STXZ") == 62
@@ -99,6 +99,7 @@ class TestCheckout():
 
     def test_checkout_empty(self):
         assert checkout_solution.checkout("") == 0
+
 
 
 

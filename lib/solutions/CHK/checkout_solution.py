@@ -235,30 +235,29 @@ def calculate_range_discount(sku_frequency):
         for i in range(value):
             flat_sku.append(key)
 
+    ordered_skus = sorted(flat_sku, reverse=True, key=lambda item: prices[item]["base_cost"])
+
     found_pairs = 0
     loop = True
     while loop:
         combo = 0
         letters = []
         for i in range(grouping):
-            for letter in flat_sku:
+            for letter in ordered_skus:
                 if letter in accepted_items:
                     letters.append(letter)
                     combo += 1
-                    flat_sku.pop(flat_sku.index(letter))
+                    ordered_skus.pop(ordered_skus.index(letter))
                     break
 
         if combo == grouping:
             found_pairs += 1
         else:
             loop = False
-            flat_sku += letters
+            ordered_skus += letters
 
-    print("---")
-    print(found_pairs)
-    print(Counter(flat_sku))
 
-    return Counter(flat_sku), found_pairs * 45
+    return Counter(ordered_skus), found_pairs * 45
 
 
 def parse_skus(raw_string):
@@ -299,6 +298,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
