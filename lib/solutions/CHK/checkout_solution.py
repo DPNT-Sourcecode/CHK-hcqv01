@@ -5,7 +5,12 @@
 def checkout(skus):
     if not isinstance(skus, str):
         return -1
-    individual_skus = [x.strip() for x in skus.split(',')]
+
+    individual_skus = [x.strip().upper() for x in skus.split(',')]
+
+    if len(individual_skus) == 0:
+        return -1
+
 
     prices = {
         "A": 50,
@@ -15,15 +20,12 @@ def checkout(skus):
     }
 
     total_price = 0
-    for sku in skus:
-        price = prices[sku]
-        print(price)
-        total_price += prices[sku]
-
-    print("--")
-    print(total_price)
+    for sku in individual_skus:
+        item_price = prices[sku]
+        total_price += item_price
 
     return total_price
+
 
 
 
