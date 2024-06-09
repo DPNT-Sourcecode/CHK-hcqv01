@@ -236,6 +236,7 @@ def calculate_range_discount(sku_frequency):
     """
         Calculates range discounts and removes them from the total SKUs
     """
+    print(sku_frequency)
     s_count = sku_frequency.get('S', 0)
     print(s_count)
     t_count = sku_frequency.get('T', 0)
@@ -287,6 +288,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
