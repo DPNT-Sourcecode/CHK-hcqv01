@@ -84,12 +84,21 @@ def calculate_cost_of_sku(sku, amount):
     """
         Calculates the cost of an individual SKU
     """
-    return prices[sku] * amount - calculate_multi_reduction(sku, amount)
+    volume_discount = calculate_volume_discount(sku, amount)
+    return prices[sku] * amount - volume_discount
 
-def calculate_multi_reduction(sku, amount):
+def calculate_volume_discount(sku, amount):
     """
-        Calculates the discount for a given SKU and the amount of items
+        Calculates the volume discount for a given SKU and the amount of items
     """
+    sku_options = prices[sku]
+
+    if 'volume_discount' in sku_options:
+        un_ordered_discounts = sku_options['volume_discount']
+        ordered_discounts = sorted(un_ordered_discounts, key=lambda x: x['amount'], reverse=True)
+        print(ordered_discounts)
+
+
     if sku == 'A':
         large_discount_amount = amount // 5
         small_discount_amount = (amount - (large_discount_amount * 5)) // 3
@@ -155,6 +164,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
