@@ -265,44 +265,17 @@ def calculate_range_discount(sku_frequency):
                     combo += 1
                     flat_sku.pop(flat_sku.index(letter))
 
-        print(combo)
-        loop = False
 
+        print("-- found " + str(combo))
+        if combo == grouping:
+            found_pairs += 1
+        else:
+            loop = False
 
-    #
-    #     combo = 0
-    #     letters = []
-    #
-    #     for i in range(grouping):
-    #         print("-- looking for new letter")
-    #
-    #         for letter in flat_sku:
-    #             if letter in accepted_items:
-    #                 print("--- found letter")
-    #                 letters.append(letter)
-    #                 combo += 1
-    #                 break
-    #
-    #     if combo == 3:
-    #         found_pairs += 1
-    #     else:
-    #         loop = False
-    #
-    # print(found_pairs)
+    print(found_pairs)
+    print(flat_sku)
 
-
-
-
-
-
-
-
-
-    print(accepted_items)
-
-
-
-    return
+    return Counter(flat_sku), found_pairs * 45
 
 
 def parse_skus(raw_string):
@@ -343,6 +316,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
