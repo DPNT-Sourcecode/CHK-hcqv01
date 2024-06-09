@@ -3,6 +3,10 @@ from solutions.CHK import checkout_solution
 
 class TestCheckout():
 
+    # Round 2
+
+
+    # Round 1
     def test_checkout_multi(self):
         assert checkout_solution.checkout("A,A,A") == 130
         assert checkout_solution.checkout("A,A,A,B,C") == 180
@@ -30,4 +34,5 @@ class TestCheckout():
 
     def test_checkout_empty(self):
         assert checkout_solution.checkout("") == 0
+
 
