@@ -213,7 +213,9 @@ def calculate_free_discount_deductions(skus: array) -> array:
                     if amount_of_sku >= 3:
                         groups_of_number = amount_of_sku // discount['amount']
                         groups_of_removal = groups_of_number // discount['amount']
+                        print(sku + " " + str(groups_of_removal))
                         final_amount = (amount_of_sku // discount['amount']) - groups_of_removal
+                        print(sku + " " + str(final_amount))
                         sku_copy[sku] = amount_of_sku - final_amount
                 else:
                     amount_of_sku_reduction = (sku_copy[sku] or 0) // discount["amount"]
@@ -260,6 +262,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
