@@ -168,6 +168,14 @@ prices = {
     },
 }
 
+range_discounts = [
+    {
+        "range": ["S","T","X","Y","Z"],
+        "amount_required": 3,
+        "base_cost": 45,
+    }
+]
+
 class InvalidCheckoutError(Exception):
     pass
 
@@ -224,6 +232,12 @@ def calculate_free_discount_deductions(skus: array) -> array:
 
     return sku_copy
 
+def calculate_range_discount(sku_frequency):
+    """
+        Calculates range discounts and removes them from the total SKUs
+    """
+    print("--- range")
+    print(sku_frequency)
 
 
 def parse_skus(raw_string):
@@ -248,11 +262,13 @@ def process_checkout(skus):
     # calculate cost
     frequency_dict = Counter(parsed_skus)
     frequency_dict = calculate_free_discount_deductions(frequency_dict)
+    frequency_dict, range_total_cost =  calculate_range_discount(frequency_dict)
+
     total_price = 0
     for key, value in frequency_dict.items():
         total_price += calculate_cost_of_sku(key, value)
 
-    return total_price
+    return total_price + range_total_cost
 
 
 
@@ -262,6 +278,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
