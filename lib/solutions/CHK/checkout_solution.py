@@ -203,7 +203,7 @@ def calculate_free_discount_deductions(skus: array) -> array:
     Calculates the free discount for skus
     """
     sku_copy = copy(skus)
-    for sku in sku_copy:
+    for sku in skus:
         sku_options = prices[sku]
 
         if 'multi_discount' in sku_options:
@@ -260,6 +260,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
