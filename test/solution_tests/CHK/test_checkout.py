@@ -5,7 +5,7 @@ class TestCheckout():
 
     # round 5
     def test_range_discount(self):
-        £assert checkout_solution.checkout("STX") == 45
+        #assert checkout_solution.checkout("STX") == 45
         assert checkout_solution.checkout("STXX") == 45
 
     # # round 4
@@ -94,4 +94,5 @@ class TestCheckout():
     #
     # def test_checkout_empty(self):
     #     assert checkout_solution.checkout("") == 0
+
 
