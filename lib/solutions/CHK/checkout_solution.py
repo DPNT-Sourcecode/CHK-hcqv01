@@ -168,14 +168,6 @@ prices = {
     },
 }
 
-range_discounts = [
-    {
-        "range": ["S", "T", "X", "Y", "Z"],
-        "amount_required": 3,
-        "base_cost": 45,
-    }
-]
-
 class InvalidCheckoutError(Exception):
     pass
 
@@ -243,40 +235,24 @@ def calculate_range_discount(sku_frequency):
         for i in range(value):
             flat_sku.append(key)
 
-
-    print(flat_sku)
-
     found_pairs = 0
-
     loop = True
     while loop:
-        print('- loop')
-
         combo = 0
         letters = []
-
         for i in range(grouping):
-            print("-- looking for letter " + str(i))
-
             for letter in flat_sku:
                 if letter in accepted_items:
-                    print("-- got one " + letter)
                     letters.append(letter)
                     combo += 1
                     flat_sku.pop(flat_sku.index(letter))
                     break
 
-
-
-        print("-- found " + str(combo))
         if combo == grouping:
             found_pairs += 1
         else:
             loop = False
             flat_sku += letters
-
-    print(found_pairs)
-    print(flat_sku)
 
     return Counter(flat_sku), found_pairs * 45
 
@@ -319,6 +295,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
