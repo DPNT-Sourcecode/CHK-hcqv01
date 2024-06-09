@@ -5,19 +5,24 @@ class TestCheckout():
 
     def test_checkout_multi(self):
         assert checkout_solution.checkout("A,A,A") == 130
-        assert checkout_solution.checkout("A,A,A,B,C") == 130
+        assert checkout_solution.checkout("A,A,A,B,C") == 180
+        assert checkout_solution.checkout("A,A,A,A,A,A,A,B,B,C") == 375
 
     def test_checkout_basic(self):
-        assert checkout_solution.checkout("A,B") == 80
+        assert checkout_solution.checkout("A,B,D") == 95
 
     def test_checkout_case(self):
         assert checkout_solution.checkout("A,b") == 80
+
+    def test_checkout_space(self):
+        assert checkout_solution.checkout("A, b") == 80
 
     def test_checkout_illegal(self):
         assert checkout_solution.checkout(123) == -1
 
     def test_checkout_empty(self):
         assert checkout_solution.checkout("") == -1
+
 
 
 
