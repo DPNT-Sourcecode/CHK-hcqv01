@@ -13,13 +13,13 @@ from copy import copy
 | E    | 40    | 2E get one B free      | a
 | F    | 10    | 2F get one F free      | a
 | G    | 20    |                        | a
-| H    | 10    | 5H for 45, 10H for 80  |
+| H    | 10    | 5H for 45, 10H for 80  | a
 | I    | 35    |                        | a
 | J    | 60    |                        | a
-| K    | 80    | 2K for 150             |
+| K    | 80    | 2K for 150             | a
 | L    | 90    |                        | a
 | M    | 15    |                        | a
-| N    | 40    | 3N get one M free      |
+| N    | 40    | 3N get one M free      | a
 | O    | 10    |                        | a
 | P    | 50    | 5P for 200             |
 | Q    | 30    | 3Q for 80              |
@@ -86,21 +86,49 @@ prices = {
     "G": {
       "base_cost": 20,
     },
-    # "H": 10,
+    "H": {
+        "base_cost": 10,
+        "volume_discount": [
+            {
+                "amount": 5,
+                "discount": 5,
+            },
+            {
+                "amount": 10,
+                "discount": 20
+            }
+        ]
+    },
     "I": {
       "base_cost": 35,
     },
     "J": {
       "base_cost": 60,
     },
-    # "K": 80,
+    "K": {
+      "base_cost": 80,
+      "volume_discount": [
+          {
+              "amount": 2,
+              "discount": 10,
+          }
+      ]
+    },
     "L": {
       "base_cost": 90,
     },
     "M": {
       "base_cost": 15,
     },
-    # "N": 40,
+    "N": {
+      "base_cost": 40,
+      "multi_discount": [
+          {
+              "amount": 3,
+              "free_item": "M",
+          }
+      ]
+    },
     "O": {
       "base_cost": 10,
     },
@@ -218,6 +246,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 

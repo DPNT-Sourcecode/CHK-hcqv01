@@ -15,8 +15,16 @@ class TestCheckout():
         assert checkout_solution.checkout("BBB") == 75
         assert checkout_solution.checkout("BBBB") == 90
 
+        assert checkout_solution.checkout("HHHHH") == 45
+        assert checkout_solution.checkout("HHHHHHHHHH") == 80
+        assert checkout_solution.checkout("HHHHHHHHHHH") == 90
+
+        assert checkout_solution.checkout("KK") == 150
+
+
     def test_multi_buy_discount(self):
         assert checkout_solution.checkout("BEE") == 80
+        assert checkout_solution.checkout("NNNM") == 120
 
 
     # Round 3
@@ -65,6 +73,7 @@ class TestCheckout():
 
     def test_checkout_empty(self):
         assert checkout_solution.checkout("") == 0
+
 
 
 
