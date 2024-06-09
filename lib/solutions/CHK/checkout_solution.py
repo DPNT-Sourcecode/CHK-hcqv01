@@ -1,6 +1,6 @@
 import array
 from collections import Counter
-
+from copy import copy
 
 """
 +------+-------+------------------------+
@@ -58,10 +58,18 @@ prices = {
               "discount": 15,
           }
       ]
-    }
+    },
     # "C": 20,
     # "D": 15,
-    # "E": 40,
+    "E": {
+      "base_cost": 40,
+      "multi_discount": [
+          {
+              "amount": 2,
+              "free_item": "B",
+          }
+      ]
+    },
     # "F": 10,
     # "G": 20,
     # "H": 10,
@@ -119,17 +127,22 @@ def calculate_free_discount_deductions(skus: array) -> array:
     """
     Calculates the free discount for skus
     """
-    amount_of_e_sku_discounts = (skus["E"] or 0) // 2
-    if "B" in skus.keys():
-        potential_new_b_balance = skus["B"] - amount_of_e_sku_discounts
-        new_b_balance = potential_new_b_balance if potential_new_b_balance >= 0 else 0
-        skus["B"] = new_b_balance
+    sku_copy = copy(skus)
+    for sku in sku_copy:
 
-    amount_of_f_sku = skus["F"] or 0
-    if amount_of_f_sku >= 3:
-        skus["F"] = amount_of_f_sku - amount_of_f_sku // 3
 
-    return skus
+
+    # amount_of_e_sku_discounts = (skus["E"] or 0) // 2
+    # if "B" in skus.keys():
+    #     potential_new_b_balance = skus["B"] - amount_of_e_sku_discounts
+    #     new_b_balance = potential_new_b_balance if potential_new_b_balance >= 0 else 0
+    #     skus["B"] = new_b_balance
+    #
+    # amount_of_f_sku = skus["F"] or 0
+    # if amount_of_f_sku >= 3:
+    #     skus["F"] = amount_of_f_sku - amount_of_f_sku // 3
+
+    return sku_copy
 
 
 
@@ -169,6 +182,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
