@@ -2,39 +2,6 @@ import array
 from collections import Counter
 from copy import copy
 
-"""
-+------+-------+------------------------+
-| Item | Price | Special offers         |
-+------+-------+------------------------+
-| A    | 50    | 3A for 130, 5A for 200 | a
-| B    | 30    | 2B for 45              | a
-| C    | 20    |                        | a
-| D    | 15    |                        | a
-| E    | 40    | 2E get one B free      | a
-| F    | 10    | 2F get one F free      | a
-| G    | 20    |                        | a
-| H    | 10    | 5H for 45, 10H for 80  | a
-| I    | 35    |                        | a
-| J    | 60    |                        | a
-| K    | 80    | 2K for 150             | a
-| L    | 90    |                        | a
-| M    | 15    |                        | a
-| N    | 40    | 3N get one M free      | a
-| O    | 10    |                        | a
-| P    | 50    | 5P for 200             | a
-| Q    | 30    | 3Q for 80              | a
-| R    | 50    | 3R get one Q free      | a
-| S    | 30    |                        | a
-| T    | 20    |                        | a
-| U    | 40    | 3U get one U free      | a
-| V    | 50    | 2V for 90, 3V for 130  | a
-| W    | 20    |                        | a
-| X    | 90    |                        | a
-| Y    | 10    |                        | a
-| Z    | 50    |                        | a
-+------+-------+------------------------+
-"""
-
 # noinspection PyUnusedLocal
 prices = {
     "A": {
@@ -293,6 +260,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
