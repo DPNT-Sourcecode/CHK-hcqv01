@@ -243,10 +243,13 @@ def calculate_range_discount(sku_frequency):
 
     possible_combinations = total_possible // 3
 
+
+
+
     print(possible_combinations)
 
 
-    return 0
+    return possible_combinations * 45
 
 
 def parse_skus(raw_string):
@@ -287,6 +290,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
