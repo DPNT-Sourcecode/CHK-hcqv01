@@ -136,7 +136,7 @@ prices = {
       "base_cost": 40,
       "multi_discount": [
           {
-              "amount": 3,
+              "amount": 4,
               "free_item": "U",
           }
       ]
@@ -262,12 +262,6 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
-
-
-
-
-
-
 
 
 
