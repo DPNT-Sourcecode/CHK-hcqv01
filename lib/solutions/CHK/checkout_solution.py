@@ -237,7 +237,15 @@ def calculate_free_discount_deductions(skus: array) -> array:
                         print("-- groups")
                         print(amount_of_sku // discount['amount'])
 
-                        sku_copy[sku] = amount_of_sku - amount_of_sku // discount['amount']
+                        groups_of_number = amount_of_sku // discount['amount']
+                        groups_of_removal = groups_of_number // discount['amount']
+                        print(groups_of_removal)
+
+                        final_amount = amount_of_sku // (discount['amount'] + groups_of_removal)
+                        print('-- final')
+                        print(final_amount)
+
+                        sku_copy[sku] = amount_of_sku - amount_of_sku // (discount['amount'] - 1)
                 else:
                     amount_of_sku_reduction = (sku_copy[sku] or 0) // discount["amount"]
                     potential_new_balance = (sku_copy[discount["free_item"]] or 0) - amount_of_sku_reduction
@@ -283,15 +291,6 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
-
-
-
-
-
-
-
-
-
 
 
 

@@ -85,10 +85,3 @@ class TestCheckout():
     #
     # def test_checkout_empty(self):
     #     assert checkout_solution.checkout("") == 0
-
-
-
-
-
-
-
