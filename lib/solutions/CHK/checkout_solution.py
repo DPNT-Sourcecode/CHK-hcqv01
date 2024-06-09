@@ -129,7 +129,14 @@ def calculate_free_discount_deductions(skus: array) -> array:
     """
     sku_copy = copy(skus)
     for sku in sku_copy:
+        sku_options = prices[sku]
 
+        if 'multi_discount' in sku_options:
+            for discount in sku_options['multi_discount']:
+                print(discount["amount"])
+                amount_of_sku_reduction = (sku_copy[sku] or 0) // sku_options["multi_discount"]["amount"]
+                potential_new_balance = (sku_copy[sku_options["multi_discount"]["free_item"]] or 0) - amount_of_sku_reduction
+                sku_copy[sku_options["multi_discount"]["free_item"]] = potential_new_balance if potential_new_balance >= 0 else 0
 
 
     # amount_of_e_sku_discounts = (skus["E"] or 0) // 2
@@ -182,14 +189,6 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
-
-
-
-
-
-
-
-
 
 
 
