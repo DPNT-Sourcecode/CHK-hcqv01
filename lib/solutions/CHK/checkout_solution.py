@@ -3,7 +3,7 @@
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    if not isinstance(skus, str):
+    if not isinstance(skus, str) or len(skus) == 0:
         return -1
 
     individual_skus = [x.strip().upper() for x in skus.split(',')]
@@ -25,6 +25,7 @@ def checkout(skus):
         total_price += item_price
 
     return total_price
+
 
 
 
