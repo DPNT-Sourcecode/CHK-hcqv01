@@ -236,20 +236,17 @@ def calculate_range_discount(sku_frequency):
     """
         Calculates range discounts and removes them from the total SKUs
     """
-    print(sku_frequency)
-    s_count = sku_frequency.get('S', 0)
-    print(s_count)
-    t_count = sku_frequency.get('T', 0)
-    print(t_count)
-    x_count = sku_frequency.get('X', 0)
-    print(t_count)
-    y_count = sku_frequency.get('Y', 0)
-    z_count = sku_frequency.get('Z', 0)
+    total_possible = 0
+    for key, value in sku_frequency.items():
+        if key in ["S", "T", "X", "Y", "Z"]:
+            total_possible += value
 
-    pairs = min(s_count, t_count, x_count, y_count, z_count)
-    print(pairs)
+    possible_combinations = total_possible // 3
 
-    return pairs * 45
+    print(possible_combinations)
+
+
+    return 0
 
 
 def parse_skus(raw_string):
@@ -290,6 +287,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
