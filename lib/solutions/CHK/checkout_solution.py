@@ -98,13 +98,14 @@ def calculate_volume_discount(sku, volume):
         un_ordered_discounts = sku_options['volume_discount']
         ordered_discounts = sorted(un_ordered_discounts, key=lambda x: x['amount'], reverse=True)
 
-        processed_volume = 0
+        affected_units = 0
         for discount in ordered_discounts:
-            affected_volume = volume - processed_volume
+            affected_volume = volume - affected_units
             print(affected_volume)
 
             discount_amount = affected_volume // discount['amount']
-            processed_volume += discount_amount
+
+            affected_units += discount_amount * discount['amount']
             total_discount += discount_amount * discount['discount']
 
     return total_discount
@@ -175,6 +176,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
