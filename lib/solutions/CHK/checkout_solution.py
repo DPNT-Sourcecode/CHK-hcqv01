@@ -50,7 +50,15 @@ prices = {
           }
       ]
     },
-    # "B": 30,
+    "B": {
+      "base_cost": 30,
+      "volume_discount": [
+          {
+              "amount": 2,
+              "discount": 15,
+          }
+      ]
+    }
     # "C": 20,
     # "D": 15,
     # "E": 40,
@@ -100,27 +108,12 @@ def calculate_volume_discount(sku, volume):
 
         affected_units = 0
         for discount in ordered_discounts:
-            affected_volume = volume - affected_units
-            print(affected_volume)
-
-            discount_amount = affected_volume // discount['amount']
-
+            discount_amount = (volume - affected_units) // discount['amount']
             affected_units += discount_amount * discount['amount']
             total_discount += discount_amount * discount['discount']
 
     return total_discount
 
-
-    if sku == 'A':
-        large_discount_amount = amount // 5
-        small_discount_amount = (amount - (large_discount_amount * 5)) // 3
-        return (large_discount_amount * 50) + (small_discount_amount * 20)
-
-    if sku == 'B':
-        multi_units = amount // 2
-        return multi_units * 15
-
-    return 0
 
 def calculate_free_discount_deductions(skus: array) -> array:
     """
@@ -176,6 +169,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
