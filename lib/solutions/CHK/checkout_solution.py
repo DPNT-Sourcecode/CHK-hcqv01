@@ -236,24 +236,14 @@ def calculate_range_discount(sku_frequency):
     """
         Calculates range discounts and removes them from the total SKUs
     """
-    individual_letters = []
-    for key, value in sku_frequency.items():
-        for i in range(value):
-            individual_letters.append(key)
+    s_count = sku_frequency.get('S', 0)
+    print(s_count)
+    t_count = sku_frequency.get('T', 0)
+    x_count = sku_frequency.get('X', 0)
+    y_count = sku_frequency.get('Y', 0)
+    z_count = sku_frequency.get('Z', 0)
 
-    letter_counts = Counter(individual_letters)
-
-    print(letter_counts)
-
-    print("--- range")
-    print(sku_frequency)
-
-    min_count = min(letter_counts.get(letter, 0) for letter in ['S', 'T', 'X', 'Y', 'Z'])
-
-    print(min_count)
-
-    pairs = min_count // 3
-
+    pairs = min(s_count, t_count, x_count, y_count, z_count)
     print(pairs)
 
     return pairs * 45
@@ -297,6 +287,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
