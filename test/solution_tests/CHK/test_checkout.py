@@ -33,6 +33,9 @@ class TestCheckout():
 
         assert checkout_solution.checkout("RRRQ") == 150
 
+        assert checkout_solution.checkout("FFF") == 20
+        assert checkout_solution.checkout("UUU") == 80
+
 
     # Round 3
     def test_multi_buy_F_discount_to_F(self):
@@ -80,6 +83,7 @@ class TestCheckout():
 
     def test_checkout_empty(self):
         assert checkout_solution.checkout("") == 0
+
 
 
 
