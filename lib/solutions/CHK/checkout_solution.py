@@ -158,7 +158,7 @@ prices = {
       "base_cost": 20,
     },
     "X": {
-      "base_cost": 90,
+      "base_cost": 17,
     },
     "Y": {
       "base_cost": 10,
@@ -252,6 +252,7 @@ def calculate_range_discount(sku_frequency):
     while loop:
         print('- loop')
 
+        combo = 0
         letters = []
 
         for i in range(grouping):
@@ -261,19 +262,18 @@ def calculate_range_discount(sku_frequency):
                 if letter in accepted_items:
                     print("-- got one " + letter)
                     letters.append(letter)
+                    combo += 1
+                    flat_sku.pop(flat_sku.index(letter))
                     break
 
 
 
-        print("-- found " + str(len(letters)))
-
-
-        if len(letters) == grouping:
+        print("-- found " + str(combo))
+        if combo == grouping:
             found_pairs += 1
-            for letter in letters:
-                flat_sku.pop(flat_sku.index(letter))
         else:
             loop = False
+            flat_sku += letters
 
     print(found_pairs)
     print(flat_sku)
@@ -319,6 +319,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
