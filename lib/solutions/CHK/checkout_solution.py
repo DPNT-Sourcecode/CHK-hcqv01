@@ -170,7 +170,7 @@ prices = {
 
 range_discounts = [
     {
-        "range": ["S","T","X","Y","Z"],
+        "range": ["S", "T", "X", "Y", "Z"],
         "amount_required": 3,
         "base_cost": 45,
     }
@@ -239,6 +239,12 @@ def calculate_range_discount(sku_frequency):
     print("--- range")
     print(sku_frequency)
 
+    min_count = min(sku_frequency.get(letter, 0) for letter in ['S', 'T', 'X', 'Y', 'Z'])
+
+    pairs = min_count // 3
+
+    return pairs * 45
+
 
 def parse_skus(raw_string):
     """
@@ -278,6 +284,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
