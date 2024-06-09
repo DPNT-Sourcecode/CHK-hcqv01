@@ -14,24 +14,24 @@ from copy import copy
 | F    | 10    | 2F get one F free      | a
 | G    | 20    |                        | a
 | H    | 10    | 5H for 45, 10H for 80  |
-| I    | 35    |                        | 
-| J    | 60    |                        |
+| I    | 35    |                        | a
+| J    | 60    |                        | a
 | K    | 80    | 2K for 150             |
-| L    | 90    |                        |
-| M    | 15    |                        |
+| L    | 90    |                        | a
+| M    | 15    |                        | a
 | N    | 40    | 3N get one M free      |
-| O    | 10    |                        |
+| O    | 10    |                        | a
 | P    | 50    | 5P for 200             |
 | Q    | 30    | 3Q for 80              |
 | R    | 50    | 3R get one Q free      |
-| S    | 30    |                        |
-| T    | 20    |                        |
+| S    | 30    |                        | a
+| T    | 20    |                        | a
 | U    | 40    | 3U get one U free      |
 | V    | 50    | 2V for 90, 3V for 130  |
-| W    | 20    |                        |
-| X    | 90    |                        |
-| Y    | 10    |                        |
-| Z    | 50    |                        |
+| W    | 20    |                        | a
+| X    | 90    |                        | a
+| Y    | 10    |                        | a
+| Z    | 50    |                        | a
 +------+-------+------------------------+
 """
 
@@ -90,23 +90,43 @@ prices = {
     "I": {
       "base_cost": 35,
     },
-    # "J": 60,
+    "J": {
+      "base_cost": 60,
+    },
     # "K": 80,
-    # "L": 90,
-    # "M": 15,
+    "L": {
+      "base_cost": 90,
+    },
+    "M": {
+      "base_cost": 15,
+    },
     # "N": 40,
-    # "O": 10,
+    "O": {
+      "base_cost": 10,
+    },
     # "P": 50,
     # "Q": 30,
     # "R": 50,
-    # "S": 30,
-    # "T": 20,
+    "S": {
+      "base_cost": 30,
+    },
+    "T": {
+      "base_cost": 20,
+    },
     # "U": 40,
     # "V": 50,
-    # "W": 20,
-    # "X": 90,
-    # "Y": 10,
-    # "Z": 50,
+    "W": {
+      "base_cost": 20,
+    },
+    "X": {
+      "base_cost": 90,
+    },
+    "Y": {
+      "base_cost": 10,
+    },
+    "Z": {
+      "base_cost": 50,
+    },
 }
 
 class InvalidCheckoutError(Exception):
@@ -198,6 +218,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
