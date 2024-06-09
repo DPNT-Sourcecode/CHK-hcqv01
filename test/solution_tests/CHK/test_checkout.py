@@ -4,7 +4,11 @@ from solutions.CHK import checkout_solution
 class TestCheckout():
 
     # Round 2
-
+    def test_non_linear_combination(self):
+        assert checkout_solution.checkout("AAAAA") == 200
+        assert checkout_solution.checkout("AAA") == 130
+        assert checkout_solution.checkout("AAAAAAAA") == 330
+        assert checkout_solution.checkout("AAAAAAAAA") == 380
 
     # Round 1
     def test_checkout_multi(self):
@@ -34,5 +38,6 @@ class TestCheckout():
 
     def test_checkout_empty(self):
         assert checkout_solution.checkout("") == 0
+
 
 
