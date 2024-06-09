@@ -48,11 +48,15 @@ def calculate_free_discount_deductions(skus: array) -> array:
 
     amount_of_f_sku = skus["F"] or 0
     if amount_of_f_sku >= 3:
-        amount_of_f_sku_discounts = amount_of_f_sku // 2
-        print(amount_of_f_sku_discounts)
-        potential_new_f_balance = amount_of_f_sku - amount_of_f_sku_discounts
-        new_f_balance = potential_new_f_balance if potential_new_f_balance >= 0 else 0
-        skus["F"] = new_f_balance
+        f_options = ['F'] * amount_of_f_sku
+        removed_multi_purchase = f_options[::2]
+        print(len(removed_multi_purchase))
+
+        # amount_of_f_sku_discounts = amount_of_f_sku // 2
+        # print(amount_of_f_sku_discounts)
+        # potential_new_f_balance = amount_of_f_sku - amount_of_f_sku_discounts
+        # new_f_balance = potential_new_f_balance if potential_new_f_balance >= 0 else 0
+        # skus["F"] = new_f_balance
 
     return skus
 
@@ -94,6 +98,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
