@@ -11,6 +11,9 @@ class TestCheckout():
     def test_checkout_basic(self):
         assert checkout_solution.checkout("A,B,D") == 95
 
+    def test_checkout_no_delim(self):
+        assert checkout_solution.checkout("ABD") == 95
+
     def test_checkout_case(self):
         assert checkout_solution.checkout("A,b") == 80
 
@@ -22,6 +25,7 @@ class TestCheckout():
 
     def test_checkout_empty(self):
         assert checkout_solution.checkout("") == -1
+
 
 
 
