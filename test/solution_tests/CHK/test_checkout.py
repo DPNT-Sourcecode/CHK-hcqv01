@@ -15,34 +15,34 @@ class TestCheckout():
         assert checkout_solution.checkout("EEEEEEB") == 240
         assert checkout_solution.checkout("EEEEEEBB") == 240
 
+    # Round 1
+    def test_checkout_multi(self):
+        assert checkout_solution.checkout("A,A,A") == 130
+        assert checkout_solution.checkout("A,A,A,B,C") == 180
+        assert checkout_solution.checkout("A,A,A,A,A,A,A,B,B,C") == 365
 
-    # # Round 1
-    # def test_checkout_multi(self):
-    #     assert checkout_solution.checkout("A,A,A") == 130
-    #     assert checkout_solution.checkout("A,A,A,B,C") == 180
-    #     assert checkout_solution.checkout("A,A,A,A,A,A,A,B,B,C") == 375
-    #
-    # def test_checkout_basic(self):
-    #     assert checkout_solution.checkout("A,B,D") == 95
-    #
-    # def test_checkout_no_delim(self):
-    #     assert checkout_solution.checkout("ABD") == 95
-    #     assert checkout_solution.checkout("AB D") == 95
-    #     assert checkout_solution.checkout("A,BD") == 95
-    #
-    # def test_checkout_case(self):
-    #     assert checkout_solution.checkout("A,b") == -1
-    #     assert checkout_solution.checkout("a") == -1
-    #     assert checkout_solution.checkout("ABCa") == -1
-    #
-    # def test_checkout_space(self):
-    #     assert checkout_solution.checkout("A, B") == 80
-    #
-    # def test_checkout_illegal(self):
-    #     assert checkout_solution.checkout(123) == -1
-    #     assert checkout_solution.checkout("ABEZ") == -1
-    #
-    # def test_checkout_empty(self):
-    #     assert checkout_solution.checkout("") == 0
+    def test_checkout_basic(self):
+        assert checkout_solution.checkout("A,B,D") == 95
+
+    def test_checkout_no_delim(self):
+        assert checkout_solution.checkout("ABD") == 95
+        assert checkout_solution.checkout("AB D") == 95
+        assert checkout_solution.checkout("A,BD") == 95
+
+    def test_checkout_case(self):
+        assert checkout_solution.checkout("A,b") == -1
+        assert checkout_solution.checkout("a") == -1
+        assert checkout_solution.checkout("ABCa") == -1
+
+    def test_checkout_space(self):
+        assert checkout_solution.checkout("A, B") == 80
+
+    def test_checkout_illegal(self):
+        assert checkout_solution.checkout(123) == -1
+        assert checkout_solution.checkout("ABEZ") == -1
+
+    def test_checkout_empty(self):
+        assert checkout_solution.checkout("") == 0
+
 
 
