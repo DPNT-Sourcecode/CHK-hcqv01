@@ -6,15 +6,15 @@ from copy import copy
 +------+-------+------------------------+
 | Item | Price | Special offers         |
 +------+-------+------------------------+
-| A    | 50    | 3A for 130, 5A for 200 |
-| B    | 30    | 2B for 45              |
-| C    | 20    |                        |
-| D    | 15    |                        |
-| E    | 40    | 2E get one B free      |
-| F    | 10    | 2F get one F free      |
-| G    | 20    |                        |
+| A    | 50    | 3A for 130, 5A for 200 | a
+| B    | 30    | 2B for 45              | a
+| C    | 20    |                        | a
+| D    | 15    |                        | a
+| E    | 40    | 2E get one B free      | a
+| F    | 10    | 2F get one F free      | a
+| G    | 20    |                        | a
 | H    | 10    | 5H for 45, 10H for 80  |
-| I    | 35    |                        |
+| I    | 35    |                        | 
 | J    | 60    |                        |
 | K    | 80    | 2K for 150             |
 | L    | 90    |                        |
@@ -59,8 +59,12 @@ prices = {
           }
       ]
     },
-    # "C": 20,
-    # "D": 15,
+    "C": {
+      "base_cost": 20,
+    },
+    "D": {
+      "base_cost": 15,
+    },
     "E": {
       "base_cost": 40,
       "multi_discount": [
@@ -79,9 +83,13 @@ prices = {
           }
       ]
     },
-    # "G": 20,
+    "G": {
+      "base_cost": 20,
+    },
     # "H": 10,
-    # "I": 35,
+    "I": {
+      "base_cost": 35,
+    },
     # "J": 60,
     # "K": 80,
     # "L": 90,
@@ -143,25 +151,12 @@ def calculate_free_discount_deductions(skus: array) -> array:
             for discount in sku_options['multi_discount']:
                 if discount['free_item'] == sku:
                     amount_of_sku = sku_copy[sku] or 0
-                    print(amount_of_sku)
-
-                    if amount_of_sku >= 3:
-                        if amount_of_sku >= discount["amount"] + 1:
-                            skus[sku] = amount_of_sku - amount_of_sku // (discount['amount'] + 1)
+                    if amount_of_sku >= 3 and amount_of_sku >= discount["amount"] + 1:
+                        sku_copy[sku] = amount_of_sku - amount_of_sku // (discount['amount'] + 1)
                 else:
                     amount_of_sku_reduction = (sku_copy[sku] or 0) // discount["amount"]
                     potential_new_balance = (sku_copy[discount["free_item"]] or 0) - amount_of_sku_reduction
                     sku_copy[discount["free_item"]] = potential_new_balance if potential_new_balance >= 0 else 0
-
-    # amount_of_e_sku_discounts = (skus["E"] or 0) // 2
-    # if "B" in skus.keys():
-    #     potential_new_b_balance = skus["B"] - amount_of_e_sku_discounts
-    #     new_b_balance = potential_new_b_balance if potential_new_b_balance >= 0 else 0
-    #     skus["B"] = new_b_balance
-    #
-    # amount_of_f_sku = skus["F"] or 0
-    # if amount_of_f_sku >= 3:
-    #     skus["F"] = amount_of_f_sku - amount_of_f_sku // 3
 
     return sku_copy
 
@@ -203,6 +198,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
