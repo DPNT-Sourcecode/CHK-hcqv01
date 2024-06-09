@@ -48,10 +48,7 @@ def calculate_free_discount_deductions(skus: array) -> array:
 
     amount_of_f_sku = skus["F"] or 0
     if amount_of_f_sku >= 3:
-        while amount_of_f_sku >= 2:
-            amount_of_f_sku -= amount_of_f_sku // 2
-        print(amount_of_f_sku)
-        skus["F"] = amount_of_f_sku
+        skus["F"] = amount_of_f_sku - amount_of_f_sku // 3
 
     return skus
 
@@ -93,6 +90,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
