@@ -35,8 +35,7 @@ def checkout(skus):
     parsed_skus = parse_skus(skus)
     if len(parsed_skus) == 0:
         return -1
-
-    if all(parsed_sku in prices.keys() for parsed_sku in parsed_skus):
+    if any(sku not in prices.keys() for sku in parsed_skus):
         return -1
 
     frequency_dict = Counter(parsed_skus)
@@ -45,14 +44,6 @@ def checkout(skus):
         total_price += calculate_cost_of_sku(key, value)
 
     return total_price
-
-
-
-
-
-
-
-
 
 
 
