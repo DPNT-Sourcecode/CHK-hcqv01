@@ -20,11 +20,11 @@ class TestCheckout():
 
 
     # # Round 3
-    # def test_multi_buy_F_discount_to_F(self):
-    #     assert checkout_solution.checkout("FF") == 20
-    #     assert checkout_solution.checkout("FFF") == 20
-    #     assert checkout_solution.checkout("FFFF") == 30
-    #     assert checkout_solution.checkout("FFFFFF") == 40
+    def test_multi_buy_F_discount_to_F(self):
+        assert checkout_solution.checkout("FF") == 20
+        assert checkout_solution.checkout("FFF") == 20
+        assert checkout_solution.checkout("FFFF") == 30
+        assert checkout_solution.checkout("FFFFFF") == 40
     #
     # # Round 2
     # def test_non_linear_combination(self):
@@ -66,3 +66,4 @@ class TestCheckout():
     #
     # def test_checkout_empty(self):
     #     assert checkout_solution.checkout("") == 0
+
