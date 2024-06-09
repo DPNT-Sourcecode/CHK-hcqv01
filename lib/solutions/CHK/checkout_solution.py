@@ -9,6 +9,7 @@ prices = {
     "C": 20,
     "D": 15,
     "E": 40,
+    "F": 10,
 }
 
 class InvalidCheckoutError(Exception):
@@ -40,11 +41,17 @@ def calculate_free_discount_deductions(skus: array) -> array:
     Calculates the free discount for skus
     """
     amount_of_e_sku_discounts = (skus["E"] or 0) // 2
-
     if "B" in skus.keys():
         potential_new_b_balance = skus["B"] - amount_of_e_sku_discounts
         new_b_balance = potential_new_b_balance if potential_new_b_balance >= 0 else 0
         skus["B"] = new_b_balance
+
+    amount_of_f_sku = skus["F"] or 0
+    if amount_of_f_sku >= 3:
+        amount_of_f_sku_discounts = amount_of_f_sku // 2
+        potential_new_f_balance = amount_of_f_sku - amount_of_f_sku_discounts
+        new_f_balance = potential_new_f_balance if potential_new_f_balance >= 0 else 0
+        skus["F"] = new_f_balance
 
     return skus
 
@@ -86,6 +93,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
