@@ -27,7 +27,7 @@ from copy import copy
 | S    | 30    |                        | a
 | T    | 20    |                        | a
 | U    | 40    | 3U get one U free      | a
-| V    | 50    | 2V for 90, 3V for 130  |
+| V    | 50    | 2V for 90, 3V for 130  | a
 | W    | 20    |                        | a
 | X    | 90    |                        | a
 | Y    | 10    |                        | a
@@ -174,7 +174,19 @@ prices = {
           }
       ]
     },
-    # "V": 50,
+    "V": {
+      "base_cost": 50,
+      "volume_discount": [
+          {
+              "amount": 2,
+              "discount": 10,
+          },
+          {
+              "amount": 3,
+              "discount": 20
+          }
+      ]
+    },
     "W": {
       "base_cost": 20,
     },
@@ -232,20 +244,10 @@ def calculate_free_discount_deductions(skus: array) -> array:
                 if discount['free_item'] == sku:
                     amount_of_sku = sku_copy[sku] or 0
                     if amount_of_sku >= 3:
-                        print(discount['amount'])
-
-                        print("-- groups")
-                        print(amount_of_sku // discount['amount'])
-
                         groups_of_number = amount_of_sku // discount['amount']
                         groups_of_removal = groups_of_number // discount['amount']
-                        print(groups_of_removal)
-
-                        final_amount = amount_of_sku // (discount['amount'] + groups_of_removal)
-                        print('-- final')
-                        print(final_amount)
-
-                        sku_copy[sku] = amount_of_sku - amount_of_sku // (discount['amount'] - 1)
+                        final_amount = (amount_of_sku // discount['amount']) - groups_of_removal
+                        sku_copy[sku] = amount_of_sku - final_amount
                 else:
                     amount_of_sku_reduction = (sku_copy[sku] or 0) // discount["amount"]
                     potential_new_balance = (sku_copy[discount["free_item"]] or 0) - amount_of_sku_reduction
@@ -291,6 +293,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
