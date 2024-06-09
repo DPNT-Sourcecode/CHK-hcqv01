@@ -13,6 +13,8 @@ class TestCheckout():
 
     def test_checkout_no_delim(self):
         assert checkout_solution.checkout("ABD") == 95
+        assert checkout_solution.checkout("AB D") == 95
+        assert checkout_solution.checkout("A,BD") == 95
 
     def test_checkout_case(self):
         assert checkout_solution.checkout("A,b") == 80
@@ -22,9 +24,11 @@ class TestCheckout():
 
     def test_checkout_illegal(self):
         assert checkout_solution.checkout(123) == -1
+        assert checkout_solution.checkout("ABEZ") == -1
 
     def test_checkout_empty(self):
         assert checkout_solution.checkout("") == -1
+
 
 
 

@@ -24,8 +24,8 @@ def calculate_cost_of_sku(sku, amount):
     return prices[sku] * amount - calculate_multi_reduction(sku, amount)
 
 def parse_skus(raw_string):
-    no_delim = raw_string.replace(',', '')
-    return [x.strip().upper() for x in no_delim]
+    no_delim = raw_string.replace(',', '').replace(' ', '').upper()
+    return list(no_delim)
 
 # skus = unicode string
 def checkout(skus):
@@ -42,6 +42,7 @@ def checkout(skus):
         total_price += calculate_cost_of_sku(key, value)
 
     return total_price
+
 
 
 
