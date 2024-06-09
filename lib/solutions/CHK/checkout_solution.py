@@ -16,13 +16,14 @@ def checkout(skus):
 
     total_price = 0
     for sku in skus:
-        print(sku)
+        price = prices[sku]
+        print(price)
         total_price += prices[sku]
 
+    print("--")
+    print(total_price)
+
     return total_price
-
-
-
 
 
 

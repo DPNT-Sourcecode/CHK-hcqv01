@@ -8,6 +8,3 @@ class TestCheckout():
 
     # def test_checkout_illegal(self):
     #     assert checkout_solution.checkout(123) == -1
-
-
-
