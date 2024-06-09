@@ -37,7 +37,9 @@ class TestCheckout():
         assert checkout_solution.checkout("RRRQ") == 150
 
         assert checkout_solution.checkout("FFF") == 20
-        assert checkout_solution.checkout("UUU") == 80
+
+        assert checkout_solution.checkout("UUU") == 120
+        assert checkout_solution.checkout("UUUU") == 120
 
 
     # Round 3
@@ -86,4 +88,5 @@ class TestCheckout():
 
     def test_checkout_empty(self):
         assert checkout_solution.checkout("") == 0
+
 
