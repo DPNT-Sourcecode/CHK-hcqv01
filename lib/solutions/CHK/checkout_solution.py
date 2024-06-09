@@ -17,8 +17,9 @@ def calculate_multi_reduction(sku, amount):
         Calculates the discount for a given SKU and the amount of items
     """
     if sku == 'A':
-        multi_units = amount // 3
-        return multi_units * 20
+        large_discount_amount = amount // 5
+        small_discount_amount = (amount - (large_discount_amount * 5)) // 3
+        return (large_discount_amount * 50) + (small_discount_amount * 20)
 
     if sku == 'B':
         multi_units = amount // 2
@@ -67,6 +68,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 
