@@ -2,15 +2,21 @@ from collections import Counter
 
 
 # noinspection PyUnusedLocal
-def calculate_cost_of_sku(sku, amount):
-    prices = {
-        "A": 50,
-        "B": 30,
-        "C": 20,
-        "D": 15,
-    }
+prices = {
+    "A": 50,
+    "B": 30,
+    "C": 20,
+    "D": 15,
+}
 
-    return prices[sku] * amount
+def calculate_cost_of_sku(sku, amount):
+    multi_reduction = 0
+    if sku == 'A':
+        multi_units = amount % 3
+        print(amount)
+        multi_reduction = multi_units * 20
+
+    return prices[sku] * amount - multi_reduction
 
 
 # skus = unicode string
@@ -28,6 +34,7 @@ def checkout(skus):
         total_price += calculate_cost_of_sku(key, value)
 
     return total_price
+
 
 
 
