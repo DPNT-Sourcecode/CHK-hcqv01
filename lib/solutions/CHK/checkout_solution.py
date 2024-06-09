@@ -44,9 +44,7 @@ def calculate_free_discount_deductions(skus: array) -> array:
     if "B" in skus.keys():
         potential_new_b_balance = skus["B"] - amount_of_e_sku_discounts
         new_b_balance = potential_new_b_balance if potential_new_b_balance >= 0 else 0
-        skus.update({"B": new_b_balance})
-
-    print(skus)
+        skus["B"] = new_b_balance
 
     return skus
 
@@ -88,6 +86,7 @@ def checkout(skus):
         return process_checkout(skus)
     except InvalidCheckoutError:
         return -1
+
 
 
 

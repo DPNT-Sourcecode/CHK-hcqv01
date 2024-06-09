@@ -12,6 +12,8 @@ class TestCheckout():
 
     def test_multi_buy_E_discount_to_B(self):
         assert checkout_solution.checkout("EEB") == 80
+        assert checkout_solution.checkout("EEEEEEB") == 240
+        assert checkout_solution.checkout("EEEEEEBB") == 240
 
 
     # # Round 1
@@ -42,4 +44,5 @@ class TestCheckout():
     #
     # def test_checkout_empty(self):
     #     assert checkout_solution.checkout("") == 0
+
 
